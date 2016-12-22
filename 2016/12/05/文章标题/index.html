@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Rookiez">
 <meta property="og:description" content="作为一个程序员，在软件开发的过程中，难免的会留下一些Bug。无意间造成软件的一些代码缺陷。当用户反馈了这些问题之后，开发人员随即对其进行修改，然后重新发布新的版本。在iOS开发中，软件上架到应用商店(App Store)是需要经过苹果的审核，这个审核时间并不一定，如果运气好，可能就是一两天的事，运气不好那就是一两周了。所以，这个时候就需要一个能够及时修改客户端的代码的工具了。 JSPatch 可">
 <meta property="og:image" content="http://rookiez.cn/uploads/2016-12-22-01.png">
-<meta property="og:updated_time" content="2016-12-22T11:00:22.000Z">
+<meta property="og:updated_time" content="2016-12-22T11:02:19.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSPatch实现iOS APP热更新">
 <meta name="twitter:description" content="作为一个程序员，在软件开发的过程中，难免的会留下一些Bug。无意间造成软件的一些代码缺陷。当用户反馈了这些问题之后，开发人员随即对其进行修改，然后重新发布新的版本。在iOS开发中，软件上架到应用商店(App Store)是需要经过苹果的审核，这个审核时间并不一定，如果运气好，可能就是一两天的事，运气不好那就是一两周了。所以，这个时候就需要一个能够及时修改客户端的代码的工具了。 JSPatch 可">
@@ -328,7 +328,7 @@
 
       
         <p> 作为一个程序员，在软件开发的过程中，难免的会留下一些Bug。无意间造成软件的一些代码缺陷。当用户反馈了这些问题之后，开发人员随即对其进行修改，然后重新发布新的版本。在iOS开发中，软件上架到应用商店(App Store)是需要经过苹果的审核，这个审核时间并不一定，如果运气好，可能就是一两天的事，运气不好那就是一两周了。所以，这个时候就需要一个能够及时修改客户端的代码的工具了。<br> JSPatch 可以让你用 JavaScript 书写原生 iOS APP。只需在项目引入极小的引擎，就可以使用 JavaScript 调用任何 Objective-C 的原生接口，获得脚本语言的优势：为项目动态添加模块，或替换项目原生代码动态修复 bug。<br>JSPatch:<a href="https://github.com/bang590/JSPatch" target="_blank" rel="external">https://github.com/bang590/JSPatch</a></p>
-<p> 在storyboard中拖一个按钮和一个文本框，并和ViewControl中的代码相关联：<br><img src="uploads/2016-12-22-01.png"></p>
+<p> 在storyboard中拖一个按钮和一个文本框，并和ViewControl中的代码相关联：<br><img src="/uploads/2016-12-22-01.png"></p>
 <p> 先看下面ViewControl的代码：<br>‘’’</p>
 <ul>
 <li>(IBAction)click:(UIButton*)sender {<br>self.textfiled.text = @”点击了这个按钮”;<br>}<br>‘’’<br>这是按钮的点击事件，可以看到，当我们点击这个按钮的时候，将文本框的内容设置成了”点击了这个按钮”这段文字</li>
