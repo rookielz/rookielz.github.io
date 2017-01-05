@@ -106,7 +106,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -188,7 +188,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
@@ -198,7 +198,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
@@ -208,7 +208,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
@@ -281,7 +281,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-05T15:57:48+08:00">
                 2017-01-05
@@ -320,25 +320,14 @@
 
       
         
-          
-            <p>SQLite，是一款轻型的数据库，是遵守ACID的关系型数据库管理系统，它包含在一个相对小的C库中。它是D.RichardHipp建立的公有领域项目。它的设计目标是嵌入式的，而且目前已经在很多嵌入式产品中使用了它，它占用资源非常的低，在嵌入式设备中，可能只需要几百K的内存就够了。它能够支持Windows/Linux/Unix等等主流的操作系统，同时能够跟很多程序语言相结合，比如 Tcl、C#、PHP、Java等，还有ODBC接口，同样比起Mysql、PostgreSQL这两款开源的世界著名数据库管理系统来讲，它的处理速度比他们都快。</p>
-<p>在iOS借助第三方的SQLite库，可以轻松实现对SQLite的增删改查操作。在这里用的是Swift，所以使用的是SQLite.swift这个库，OC可以使用OC版的。</p>
-<p>首先导入SQLite.swift<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod &apos;SQLite.swift&apos;</div></pre></td></tr></table></figure></p>
-<p>导入头文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import SQLite</div></pre></td></tr></table></figure></p>
-<p>定义一个储存位置，一般是存储在沙盒路径中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//db存储位置</div><div class="line">let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]</div></pre></td></tr></table></figure></p>
-<p>定义数据表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//表</div><div class="line">let notify = Table(&quot;Notify&quot;)</div></pre></td></tr></table></figure></p>
-<p>定义字段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//字段</div><div class="line">let id = Expression&lt;Int64&gt;(&quot;id&quot;)</div><div class="line">let tid = Expression&lt;Int64&gt;(&quot;tid&quot;)</div><div class="line">let date = Expression&lt;String&gt;(&quot;dates&quot;)</div></pre></td></tr></table></figure></p>
-<p>获取数据库链接，对数据库的所有操作都必须要获取数据库的链接之后才能。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//获取链接</div><div class="line">func getConnection()-&gt;Connection &#123;</div><div class="line">    let db:Connection!</div><div class="line">    do &#123;</div><div class="line">        db = try Connection(&quot;\(path)/db.sqlite3&quot;)</div><div class="line">    &#125; catch  &#123;</div><div class="line">        db = nil</div><div class="line">    &#125;</div><div class="line">    return db</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>创建数据表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//创建表</div><div class="line">func createTable() &#123;</div><div class="line">    do &#123;</div><div class="line">        try getConnection().run(notify.create(block: &#123; (t) in</div><div class="line">            t.column(id, primaryKey: true)</div><div class="line">            t.column(tid)</div><div class="line">            t.column(date)</div><div class="line">        &#125;))</div><div class="line">        print(&quot;创建成功&quot;)</div><div class="line">    &#125; catch  &#123;</div><div class="line">        print(error)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这里创建表中id字段时，primaryKey:true的是设置主键的意思</p>
-<p>查询一条数据是否存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//查询是否已经存在</div><div class="line">func isExist(_ id:Int) -&gt; Bool &#123;</div><div class="line">    let exist:Bool = false</div><div class="line">    do &#123;</div><div class="line">        for row in (try getConnection().prepare(&quot;select * from Notify where id = \(id)&quot;)) &#123;</div><div class="line">            exist = true</div><div class="line">        &#125;</div><div class="line">        return exist</div><div class="line">    &#125; catch  &#123;</div><div class="line">        return true</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>插入数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//插入数据</div><div class="line">func insert(_ ids:Int64,_ tids:Int64,_ dates:Date) -&gt; Bool &#123;</div><div class="line">    let times = dates.timeIntervalSince1970</div><div class="line">    let ins = notify.insert(id &lt;- ids, tid &lt;- tids,date &lt;- &quot;\(times)&quot;)</div><div class="line">    do &#123;</div><div class="line">        _ = try getConnection().run(ins)</div><div class="line">        return true</div><div class="line">    &#125; catch  &#123;</div><div class="line">        print(&quot;插入失败&quot;)</div><div class="line">        return false</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>更新数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//更新数据</div><div class="line">func update(_ tids:Int64,_ dates:Date) -&gt; Bool &#123;</div><div class="line">    let noti = notify.filter(tid == tids)</div><div class="line">    let times = dates.timeIntervalSince1970</div><div class="line">    do &#123;</div><div class="line">        _ = try getConnection().run(noti.update(tid &lt;- tids,date &lt;- &quot;\(times)&quot;))</div><div class="line">        return true</div><div class="line">    &#125; catch  &#123;</div><div class="line">        print(error)</div><div class="line">        return false</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>查询数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//查询数据</div><div class="line">func select(_ tids:Int64, _ result:selectData) &#123;</div><div class="line">    do &#123;</div><div class="line">        for row in (try getConnection().prepare(&quot;select * from Notify where tid = \(tids)&quot;)) &#123;</div><div class="line">            let str = row[2] as! String</div><div class="line">            print(&quot;dateStr:\(str)&quot;)</div><div class="line">            let time = Double(str)</div><div class="line">            result(Date(timeIntervalSince1970: time!))</div><div class="line">        &#125;</div><div class="line">    &#125; catch &#123;</div><div class="line">        print(error)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>删除数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//删除数据</div><div class="line">func delete(_ tids:Int64) -&gt; Bool &#123;</div><div class="line">    let value = notify.filter(tid == tids)</div><div class="line">    do &#123;</div><div class="line">        _ = try getConnection().run(value.delete())</div><div class="line">        return true</div><div class="line">    &#125; catch  &#123;</div><div class="line">        print(error)</div><div class="line">        return false</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这就完成了一张表的简单操作，代码是之前一个项目中使用到的代码，不明白的跳过就行，看其中的增删改查关键部分就行了☺</p>
-
-          
+          <p>SQLite，是一款轻型的数据库，是遵守ACID的关系型数据库管理系统，它包含在一个相对小的C库中。它是D.RichardHipp建立的公有领域项目。它的设计目标是嵌入式的，而且目前已经在很多嵌入式产品中使用了它，它占用资源非常的低，在嵌入式设备中，可能只需要几百K的内存就够了。它能够支持Windows/Linux/Unix等等主流的操作系统，同时能够跟很多程序语言相结合，比如 Tcl、C#、PHP、Java等，还有ODBC接口，同样比起Mysql、PostgreSQL这两款开源的世界著名数据库管理系统来讲，它的处理速度比他们都快。<br>
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/01/05/sqlite/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -415,7 +404,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-29T18:50:09+08:00">
                 2016-12-29
@@ -454,24 +443,14 @@
 
       
         
-          
-            <p>在iOS开发中，有一些页面布局，用iOS开发语言写起来可能会非常的复杂，可以用HTML替代。<br>中间涉及到js与OC代码的交互、参数传递、方法调用等。从iOS7开始，苹果公布了JavaScriptCore.framework，<br>使OC与JS的交互变得十分简单了。</p>
-<pre><code>创建项目，添加JavaScriptCore.framework
-</code></pre><p><img src="/uploads/web/1-0.png"><br><img src="/uploads/web/1-1.png"></p>
-<p>导入头文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#import &lt;JavaScriptCore/JavaScriptCore.h&gt;</div></pre></td></tr></table></figure></p>
-<p>先在用webView打开百度</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    NSString *httpStr=@&quot;https://www.baidu.com&quot;;</div><div class="line">    NSURL *httpUrl=[NSURL URLWithString:httpStr];</div><div class="line">    NSURLRequest *httpRequest=[NSURLRequest requestWithURL:httpUrl];</div><div class="line">    [self.webView loadRequest:httpRequest];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)webViewDidFinishLoad:(UIWebView *)webView&#123;</div><div class="line">    JSContext *context=[self.webView valueForKeyPath:@&quot;documentView.webView.mainFrame.javaScriptContext&quot;];</div><div class="line">    NSString *js = @&quot;alert(\&quot;在OC中执行JS代码\&quot;)&quot;;</div><div class="line">    [context evaluateScript:js];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在webView的代理方法中，执行了一段js代码。当WebView加载完成之后，弹出一个提示框。<br><img src="/uploads/web/1-2.png"></p>
-<p>提示框弹出了,接下来，修改 viewDidLoad 里面代码，加载本地的HTML文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    NSString *path = [[NSBundle mainBundle]pathForResource:@&quot;index&quot; ofType:@&quot;html&quot;];</div><div class="line">    NSURL *httpUrl=[NSURL fileURLWithPath:path];</div><div class="line">    NSURLRequest *httpRequest=[NSURLRequest requestWithURL:httpUrl];</div><div class="line">    [self.webView loadRequest:httpRequest];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>运行效果如下<br><img src="/uploads/web/1-3.png"><br>界面有点丑，将就一下😀</p>
-<p>在index.html定义了两个js函数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    function showInputValue()&#123;</div><div class="line">    var name = document.getElementById(&quot;name&quot;).value;</div><div class="line">    var pwd = document.getElementById(&quot;pwd&quot;).value;</div><div class="line">    getValues(name,pwd)</div><div class="line">&#125;</div><div class="line">    function getValues(name,pwd)&#123;</div><div class="line">    alert(name+&quot;---&quot;+pwd);</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
-<p>第一个函数，当点击提交按钮时，这个函数会获取输入框中的内容。并弹出来<br>第二个函数，是我们在oc获取js参数用的</p>
-<p>修改下代理方法中的代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- (void)webViewDidFinishLoad:(UIWebView *)webView&#123;</div><div class="line">    JSContext *context=[self.webView valueForKeyPath:@&quot;documentView.webView.mainFrame.javaScriptContext&quot;];</div><div class="line">    //    NSString *js = @&quot;alert(\&quot;在OC中执行JS代码\&quot;)&quot;;</div><div class="line">    //    [context evaluateScript:js];</div><div class="line">    context[@&quot;getValues&quot;] = ^()&#123;</div><div class="line">    NSArray *arr = [JSContext currentArguments];</div><div class="line">    for (NSString *str in arr) &#123;</div><div class="line">        NSLog(@&quot;js参数:%@&quot;,str);</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="/uploads/web/BumzgNGgFo.gif"><br>可以看到，控制台中打印出来了html中输入的内容。完成了js与oc之间的交互</p>
-<p>完整项目地址:<a href="https://github.com/rookielz/WebViewTest" target="_blank" rel="external">https://github.com/rookielz/WebViewTest</a></p>
-
-          
+          <p>在iOS开发中，有一些页面布局，用iOS开发语言写起来可能会非常的复杂，可以用HTML替代。<br />中间涉及到js与OC代码的交互、参数传递、方法调用等。从iOS7开始，苹果公布了JavaScriptCore.framework，<br />使OC与JS的交互变得十分简单了。<br>
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/29/WebView/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -548,7 +527,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-22T20:04:27+08:00">
                 2016-12-22
@@ -587,19 +566,14 @@
 
       
         
-          
-            <p>作为一个程序员，在软件开发的过程中，难免的会留下一些Bug。无意间造成软件的一些代码缺陷。当用户反馈了这些问题之后，开发人员随即对其进行修改，然后重新发布新的版本。在iOS开发中，软件上架到应用商店(App Store)是需要经过苹果的审核，这个审核时间并不一定，如果运气好，可能就是一两天的事，运气不好那就是一两周了。所以，这个时候就需要一个能够及时修改客户端的代码的工具了。<br>JSPatch 可以让你用 JavaScript 书写原生 iOS APP。只需在项目引入极小的引擎，就可以使用 JavaScript 调用任何 Objective-C 的原生接口，获得脚本语言的优势：为项目动态添加模块，或替换项目原生代码动态修复 bug。<br>JSPatch:<a href="https://github.com/bang590/JSPatch" target="_blank" rel="external">https://github.com/bang590/JSPatch</a></p>
-<p>在storyboard中拖一个按钮和一个文本框，并和ViewControl中的代码相关联：<br><img src="/uploads/2016-12-22-01.png"></p>
-<p>先看下面ViewControl的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (IBAction)click:(UIButton*)sender &#123;</div><div class="line">    self.textfiled.text = @&quot;点击了这个按钮&quot;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这是按钮的点击事件，可以看到，当我们点击这个按钮的时候，将文本框的内容设置成了”点击了这个按钮”这段文字<br><img src="/uploads/f98JgKUuIc.gif"><br>然后通过JSPatch动态修改这个点击事件里面的代码，上面已经给出了JSPatch的github地址。可以自行进去下载集成。</p>
-<p>引入头文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#import &lt;JPEngine.h&gt;</div></pre></td></tr></table></figure></p>
-<p>在项目里面添加了一个文件JSPatch.json里面的内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">defineClass(&apos;ViewController&apos;, &#123; click: function(sender) &#123;self.textfiled().setText(&quot;通过js修改了代码😀&quot;);&#125;,&#125;);</div></pre></td></tr></table></figure></p>
-<p>这段js的意思替换ViewController这个类里面的click这个方法里面的代码。<br>OC转JS代码的工具：<a href="http://jspatch.com/Tools/convertor" target="_blank" rel="external">http://jspatch.com/Tools/convertor</a></p>
-<p>现在ViewControl里面的全部代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">#import &quot;ViewController.h&quot;</div><div class="line">#import &lt;JPEngine.h&gt;</div><div class="line"></div><div class="line"></div><div class="line">@interface ViewController ()</div><div class="line"></div><div class="line">@property (strong, nonatomic) IBOutlet UITextField *textfiled;</div><div class="line"></div><div class="line">@end</div><div class="line"></div><div class="line">@implementation ViewController</div><div class="line"></div><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    [self getData];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)didReceiveMemoryWarning &#123;</div><div class="line">    [super didReceiveMemoryWarning];</div><div class="line">    &#125;</div><div class="line">- (IBAction)click:(UIButton*)sender &#123;</div><div class="line">    self.textfiled.text = @&quot;点击了这个按钮&quot;;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)getData&#123;</div><div class="line">    NSString *path = [[NSBundle mainBundle]pathForResource:@&quot;JSPatch&quot; ofType:@&quot;json&quot;];</div><div class="line">    NSString *js = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];</div><div class="line">    [JPEngine startEngine];</div><div class="line">    [JPEngine evaluateScript:js];</div><div class="line">&#125;</div><div class="line"></div><div class="line">@end</div></pre></td></tr></table></figure></p>
-<p>运行如下：<br><img src="/uploads/db7OHnjbXp.gif"><br>完成了对这个按钮点击事件的替换，这个只是简单的模拟了一下。实际应用中应该是从服务器上面的请求到js代码，存放到本地，然后从本地读取。这个过程中，又涉及到了数据的加密，如果进行明文传输，被一些人拦截修改之后，可能会造成巨大的问题，其次就是本地进行存储也需要进行加密。【ps：第一次写，欢迎批评指正☺】</p>
-<p>完整代码地址：<a href="https://github.com/rookielz/JSPatchTest" target="_blank" rel="external">github.com/rookielz/JSPatchTest</a></p>
-
-          
+          <p>作为一个程序员，在软件开发的过程中，难免的会留下一些Bug。无意间造成软件的一些代码缺陷。当用户反馈了这些问题之后，开发人员随即对其进行修改，然后重新发布新的版本。在iOS开发中，软件上架到应用商店(App Store)是需要经过苹果的审核，这个审核时间并不一定，如果运气好，可能就是一两天的事，运气不好那就是一两周了。所以，这个时候就需要一个能够及时修改客户端的代码的工具了。<br>JSPatch 可以让你用 JavaScript 书写原生 iOS APP。只需在项目引入极小的引擎，就可以使用 JavaScript 调用任何 Objective-C 的原生接口，获得脚本语言的优势：为项目动态添加模块，或替换项目原生代码动态修复 bug。<br>
+          <!--noindex-->
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/22/JSPach/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -671,7 +645,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">日志</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -723,11 +697,11 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主题 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>

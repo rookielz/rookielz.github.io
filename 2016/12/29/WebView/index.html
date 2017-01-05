@@ -84,30 +84,21 @@
 
 
 
-<meta name="description" content="在iOS开发中，有一些页面布局，用iOS开发语言写起来可能会非常的复杂，可以用HTML替代。中间涉及到js与OC代码的交互、参数传递、方法调用等。从iOS7开始，苹果公布了JavaScriptCore.framework，使OC与JS的交互变得十分简单了。
-创建项目，添加JavaScriptCore.framework
-
-导入头文件1#import &amp;lt;JavaScriptCore/JavaS">
+<meta name="description" content="在iOS开发中，有一些页面布局，用iOS开发语言写起来可能会非常的复杂，可以用HTML替代。中间涉及到js与OC代码的交互、参数传递、方法调用等。从iOS7开始，苹果公布了JavaScriptCore.framework，使OC与JS的交互变得十分简单了。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS通过WebView实现OC与JS之间相互调用">
 <meta property="og:url" content="http://rookiez.cn/2016/12/29/WebView/index.html">
 <meta property="og:site_name" content="Rookiez">
-<meta property="og:description" content="在iOS开发中，有一些页面布局，用iOS开发语言写起来可能会非常的复杂，可以用HTML替代。中间涉及到js与OC代码的交互、参数传递、方法调用等。从iOS7开始，苹果公布了JavaScriptCore.framework，使OC与JS的交互变得十分简单了。
-创建项目，添加JavaScriptCore.framework
-
-导入头文件1#import &amp;lt;JavaScriptCore/JavaS">
+<meta property="og:description" content="在iOS开发中，有一些页面布局，用iOS开发语言写起来可能会非常的复杂，可以用HTML替代。中间涉及到js与OC代码的交互、参数传递、方法调用等。从iOS7开始，苹果公布了JavaScriptCore.framework，使OC与JS的交互变得十分简单了。">
 <meta property="og:image" content="http://rookiez.cn/uploads/web/1-0.png">
 <meta property="og:image" content="http://rookiez.cn/uploads/web/1-1.png">
 <meta property="og:image" content="http://rookiez.cn/uploads/web/1-2.png">
 <meta property="og:image" content="http://rookiez.cn/uploads/web/1-3.png">
 <meta property="og:image" content="http://rookiez.cn/uploads/web/BumzgNGgFo.gif">
-<meta property="og:updated_time" content="2016-12-30T00:56:34.000Z">
+<meta property="og:updated_time" content="2017-01-05T11:01:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS通过WebView实现OC与JS之间相互调用">
-<meta name="twitter:description" content="在iOS开发中，有一些页面布局，用iOS开发语言写起来可能会非常的复杂，可以用HTML替代。中间涉及到js与OC代码的交互、参数传递、方法调用等。从iOS7开始，苹果公布了JavaScriptCore.framework，使OC与JS的交互变得十分简单了。
-创建项目，添加JavaScriptCore.framework
-
-导入头文件1#import &amp;lt;JavaScriptCore/JavaS">
+<meta name="twitter:description" content="在iOS开发中，有一些页面布局，用iOS开发语言写起来可能会非常的复杂，可以用HTML替代。中间涉及到js与OC代码的交互、参数传递、方法调用等。从iOS7开始，苹果公布了JavaScriptCore.framework，使OC与JS的交互变得十分简单了。">
 <meta name="twitter:image" content="http://rookiez.cn/uploads/web/1-0.png">
 
 
@@ -122,7 +113,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -202,7 +193,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
@@ -212,7 +203,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
@@ -222,7 +213,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
@@ -292,7 +283,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-29T18:50:09+08:00">
                 2016-12-29
@@ -330,9 +321,7 @@
       
 
       
-        <p>在iOS开发中，有一些页面布局，用iOS开发语言写起来可能会非常的复杂，可以用HTML替代。<br>中间涉及到js与OC代码的交互、参数传递、方法调用等。从iOS7开始，苹果公布了JavaScriptCore.framework，<br>使OC与JS的交互变得十分简单了。</p>
-<pre><code>创建项目，添加JavaScriptCore.framework
-</code></pre><p><img src="/uploads/web/1-0.png"><br><img src="/uploads/web/1-1.png"></p>
+        <p>在iOS开发中，有一些页面布局，用iOS开发语言写起来可能会非常的复杂，可以用HTML替代。<br>中间涉及到js与OC代码的交互、参数传递、方法调用等。从iOS7开始，苹果公布了JavaScriptCore.framework，<br>使OC与JS的交互变得十分简单了。<br><a id="more"></a><br>    创建项目，添加JavaScriptCore.framework<br><img src="/uploads/web/1-0.png"><br><img src="/uploads/web/1-1.png"></p>
 <p>导入头文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#import &lt;JavaScriptCore/JavaScriptCore.h&gt;</div></pre></td></tr></table></figure></p>
 <p>先在用webView打开百度</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidLoad &#123;</div><div class="line">    [super viewDidLoad];</div><div class="line">    NSString *httpStr=@&quot;https://www.baidu.com&quot;;</div><div class="line">    NSURL *httpUrl=[NSURL URLWithString:httpStr];</div><div class="line">    NSURLRequest *httpRequest=[NSURLRequest requestWithURL:httpUrl];</div><div class="line">    [self.webView loadRequest:httpRequest];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)webViewDidFinishLoad:(UIWebView *)webView&#123;</div><div class="line">    JSContext *context=[self.webView valueForKeyPath:@&quot;documentView.webView.mainFrame.javaScriptContext&quot;];</div><div class="line">    NSString *js = @&quot;alert(\&quot;在OC中执行JS代码\&quot;)&quot;;</div><div class="line">    [context evaluateScript:js];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -445,7 +434,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">日志</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -497,11 +486,11 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主题 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
