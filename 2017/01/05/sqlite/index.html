@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="start from zero">
+<meta name="description" content="SQLite，是一款轻型的数据库，是遵守ACID的关系型数据库管理系统，它包含在一个相对小的C库中。它是D.RichardHipp建立的公有领域项目。它的设计目标是嵌入式的，而且目前已经在很多嵌入式产品中使用了它，它占用资源非常的低，在嵌入式设备中，可能只需要几百K的内存就够了。它能够支持Windows/Linux/Unix等等主流的操作系统，同时能够跟很多程序语言相结合，比如 Tcl、C#、PH">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS数据持久化之SQLite的使用">
+<meta property="og:title" content="iOS数据持久化之SQLite的简单使用">
 <meta property="og:url" content="http://rookiez.cn/2017/01/05/sqlite/index.html">
 <meta property="og:site_name" content="Rookiez">
-<meta property="og:description" content="start from zero">
-<meta property="og:updated_time" content="2017-01-05T07:59:15.000Z">
+<meta property="og:description" content="SQLite，是一款轻型的数据库，是遵守ACID的关系型数据库管理系统，它包含在一个相对小的C库中。它是D.RichardHipp建立的公有领域项目。它的设计目标是嵌入式的，而且目前已经在很多嵌入式产品中使用了它，它占用资源非常的低，在嵌入式设备中，可能只需要几百K的内存就够了。它能够支持Windows/Linux/Unix等等主流的操作系统，同时能够跟很多程序语言相结合，比如 Tcl、C#、PH">
+<meta property="og:updated_time" content="2017-01-05T10:48:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS数据持久化之SQLite的使用">
-<meta name="twitter:description" content="start from zero">
+<meta name="twitter:title" content="iOS数据持久化之SQLite的简单使用">
+<meta name="twitter:description" content="SQLite，是一款轻型的数据库，是遵守ACID的关系型数据库管理系统，它包含在一个相对小的C库中。它是D.RichardHipp建立的公有领域项目。它的设计目标是嵌入式的，而且目前已经在很多嵌入式产品中使用了它，它占用资源非常的低，在嵌入式设备中，可能只需要几百K的内存就够了。它能够支持Windows/Linux/Unix等等主流的操作系统，同时能够跟很多程序语言相结合，比如 Tcl、C#、PH">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <title> iOS数据持久化之SQLite的使用 | Rookiez </title>
+  <title> iOS数据持久化之SQLite的简单使用 | Rookiez </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -264,7 +264,7 @@
             
             
               
-                iOS数据持久化之SQLite的使用
+                iOS数据持久化之SQLite的简单使用
               
             
           </h1>
@@ -315,7 +315,23 @@
       
 
       
-        
+        <p>SQLite，是一款轻型的数据库，是遵守ACID的关系型数据库管理系统，它包含在一个相对小的C库中。它是D.RichardHipp建立的公有领域项目。它的设计目标是嵌入式的，而且目前已经在很多嵌入式产品中使用了它，它占用资源非常的低，在嵌入式设备中，可能只需要几百K的内存就够了。它能够支持Windows/Linux/Unix等等主流的操作系统，同时能够跟很多程序语言相结合，比如 Tcl、C#、PHP、Java等，还有ODBC接口，同样比起Mysql、PostgreSQL这两款开源的世界著名数据库管理系统来讲，它的处理速度比他们都快。</p>
+<p>在iOS借助第三方的SQLite库，可以轻松实现对SQLite的增删改查操作。在这里用的是Swift，所以使用的是SQLite.swift这个库，OC可以使用OC版的。</p>
+<p>首先导入SQLite.swift<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod &apos;SQLite.swift&apos;</div></pre></td></tr></table></figure></p>
+<p>导入头文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import SQLite</div></pre></td></tr></table></figure></p>
+<p>定义一个储存位置，一般是存储在沙盒路径中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//db存储位置</div><div class="line">let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]</div></pre></td></tr></table></figure></p>
+<p>定义数据表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//表</div><div class="line">let notify = Table(&quot;Notify&quot;)</div></pre></td></tr></table></figure></p>
+<p>定义字段<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//字段</div><div class="line">let id = Expression&lt;Int64&gt;(&quot;id&quot;)</div><div class="line">let tid = Expression&lt;Int64&gt;(&quot;tid&quot;)</div><div class="line">let date = Expression&lt;String&gt;(&quot;dates&quot;)</div></pre></td></tr></table></figure></p>
+<p>获取数据库链接，对数据库的所有操作都必须要获取数据库的链接之后才能。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//获取链接</div><div class="line">func getConnection()-&gt;Connection &#123;</div><div class="line">    let db:Connection!</div><div class="line">    do &#123;</div><div class="line">        db = try Connection(&quot;\(path)/db.sqlite3&quot;)</div><div class="line">    &#125; catch  &#123;</div><div class="line">        db = nil</div><div class="line">    &#125;</div><div class="line">    return db</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>创建数据表<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//创建表</div><div class="line">func createTable() &#123;</div><div class="line">    do &#123;</div><div class="line">        try getConnection().run(notify.create(block: &#123; (t) in</div><div class="line">            t.column(id, primaryKey: true)</div><div class="line">            t.column(tid)</div><div class="line">            t.column(date)</div><div class="line">        &#125;))</div><div class="line">        print(&quot;创建成功&quot;)</div><div class="line">    &#125; catch  &#123;</div><div class="line">        print(error)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这里创建表中id字段时，primaryKey:true的是设置主键的意思</p>
+<p>查询一条数据是否存在<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//查询是否已经存在</div><div class="line">func isExist(_ id:Int) -&gt; Bool &#123;</div><div class="line">    do &#123;</div><div class="line">        for item in try getConnection().prepare(notify)&#123;</div><div class="line">            if item.get(Expression&lt;Int&gt;(&quot;id&quot;)) == id &#123;</div><div class="line">                return true</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return false</div><div class="line">    &#125; catch  &#123;</div><div class="line">        return true</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>插入数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//插入数据</div><div class="line">func insert(_ ids:Int64,_ tids:Int64,_ dates:Date) -&gt; Bool &#123;</div><div class="line">    let times = dates.timeIntervalSince1970</div><div class="line">    let ins = notify.insert(id &lt;- ids, tid &lt;- tids,date &lt;- &quot;\(times)&quot;)</div><div class="line">    do &#123;</div><div class="line">        _ = try getConnection().run(ins)</div><div class="line">        return true</div><div class="line">    &#125; catch  &#123;</div><div class="line">        print(&quot;插入失败&quot;)</div><div class="line">        return false</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>更新数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">//更新数据</div><div class="line">func update(_ tids:Int64,_ dates:Date) -&gt; Bool &#123;</div><div class="line">    let noti = notify.filter(tid == tids)</div><div class="line">    let times = dates.timeIntervalSince1970</div><div class="line">    do &#123;</div><div class="line">        _ = try getConnection().run(noti.update(tid &lt;- tids,date &lt;- &quot;\(times)&quot;))</div><div class="line">        return true</div><div class="line">    &#125; catch  &#123;</div><div class="line">        print(error)</div><div class="line">        return false</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>查询数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//查询数据</div><div class="line">func select(_ tids:Int64, _ result:selectData) &#123;</div><div class="line">    do &#123;</div><div class="line">        for row in (try getConnection().prepare(&quot;select * from Notify where tid = \(tids)&quot;)) &#123;</div><div class="line">            let str = row[2] as! String</div><div class="line">            print(&quot;dateStr:\(str)&quot;)</div><div class="line">            let time = Double(str)</div><div class="line">            result(Date(timeIntervalSince1970: time!))</div><div class="line">        &#125;</div><div class="line">    &#125; catch &#123;</div><div class="line">        print(error)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>删除数据<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//删除数据</div><div class="line">func delete(_ tids:Int64) -&gt; Bool &#123;</div><div class="line">    let value = notify.filter(tid == tids)</div><div class="line">    do &#123;</div><div class="line">        _ = try getConnection().run(value.delete())</div><div class="line">        return true</div><div class="line">    &#125; catch  &#123;</div><div class="line">        print(error)</div><div class="line">        return false</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这就完成了一张表的简单操作，代码是之前一个项目中使用到的代码，不明白的跳过就行，看其中的增删改查关键部分就行了☺</p>
+
       
     </div>
 
