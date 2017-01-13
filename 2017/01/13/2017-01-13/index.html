@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://rookiez.cn/uploads/0113/QQ20170113-0.png">
 <meta property="og:image" content="http://rookiez.cn/uploads/0113/屏幕快照 2017-01-13 下午1.44.32.png">
 <meta property="og:image" content="http://rookiez.cn/uploads/0113/4aXBSXu1QC.gif">
-<meta property="og:updated_time" content="2017-01-13T06:04:11.000Z">
+<meta property="og:updated_time" content="2017-01-13T06:15:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="TesseractOCR识别图像中的文字">
 <meta name="twitter:description" content="图像中的文字识别技术已经是比较成熟的了，Tesseract的OCR引擎最先由HP实验室于1985年开始研发，至1995年时已经成为OCR业内最准确的三款识别引擎之一。然而，HP不久便决定放弃OCR业务，Tesseract也从此尘封。数年以后，HP意识到，与其将Tesseract束之高阁，不如贡献给开源软件业，让其重焕新生－－2005年，Tesseract由美国内华达州信息技术研究所获得，并求诸于G">
@@ -111,7 +111,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -191,7 +191,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
@@ -201,7 +201,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
@@ -211,7 +211,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
@@ -281,7 +281,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-13T13:10:35+08:00">
                 2017-01-13
@@ -329,8 +329,7 @@
       
 
       
-        <p>图像中的文字识别技术已经是比较成熟的了，Tesseract的OCR引擎最先由HP实验室于1985年开始研发，至1995年时已经成为OCR业内最准确的三款识别引擎之一。然而，HP不久便决定放弃OCR业务，Tesseract也从此尘封。<br>数年以后，HP意识到，与其将Tesseract束之高阁，不如贡献给开源软件业，让其重焕新生－－2005年，Tesseract由美国内华达州信息技术研究所获得，并求诸于Google对Tesseract进行改进、消除Bug、优化工作。<br>Tesseract目前已作为开源项目发布在Google Project，<a href="https://github.com/gali8/Tesseract-OCR-iOS" target="_blank" rel="external">其项目主页在这里查看</a>。<br>  TesseractOCR从3.0开始就已经开始支持中文识别了，下载中文的语言包就行了。</p>
-<p>TesseractOCR可以到Github上面去下载，也可以通过Pod添加到工程。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod &apos;TesseractOCRiOS&apos;, &apos;~&gt; 4.0.0&apos;</div></pre></td></tr></table></figure></p>
+        <p>图像中的文字识别技术已经是比较成熟的了，Tesseract的OCR引擎最先由HP实验室于1985年开始研发，至1995年时已经成为OCR业内最准确的三款识别引擎之一。然而，HP不久便决定放弃OCR业务，Tesseract也从此尘封。<br>数年以后，HP意识到，与其将Tesseract束之高阁，不如贡献给开源软件业，让其重焕新生－－2005年，Tesseract由美国内华达州信息技术研究所获得，并求诸于Google对Tesseract进行改进、消除Bug、优化工作。<br>Tesseract目前已作为开源项目发布在Google Project，<a href="https://github.com/gali8/Tesseract-OCR-iOS" target="_blank" rel="external">其项目主页在这里查看</a>。<br>  TesseractOCR从3.0开始就已经开始支持中文识别了，下载中文的语言包就行了。<br><a id="more"></a><br>TesseractOCR可以到Github上面去下载，也可以通过Pod添加到工程。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod &apos;TesseractOCRiOS&apos;, &apos;~&gt; 4.0.0&apos;</div></pre></td></tr></table></figure></p>
 <p>导入之后，还需要把资源文件放入项目中去，需要注意的是，资源文件导入并不是直接拖到工程目就行了，这里Added folders项中，要选择Create folder references，TesseractOCR识别时需要加载资源文件，会到项目目录下去寻找tessdata目录，并在此目录下寻找语言文件。<br><img src="/uploads/0113/QQ20170113-0.png"></p>
 <p>导入TesseractOCR头文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#import &lt;TesseractOCR/TesseractOCR.h&gt;</div></pre></td></tr></table></figure></p>
 <p>声明一个NSOperationQueue,用于存放识别队列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/** 队列 **/</div><div class="line">@property(nonatomic,strong)NSOperationQueue *operationQueue;</div><div class="line"></div><div class="line"></div><div class="line">// 初始化</div><div class="line">self.operationQueue = [[NSOperationQueue alloc] init];</div></pre></td></tr></table></figure></p>
@@ -440,7 +439,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">日志</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -492,11 +491,11 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主题 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
