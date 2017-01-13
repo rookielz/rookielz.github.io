@@ -106,7 +106,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -188,7 +188,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
@@ -198,7 +198,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
@@ -208,7 +208,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
@@ -231,6 +231,145 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://rookiez.cn/2017/01/13/2017-01-13/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Rookiez">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/head.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Rookiez">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Rookiez" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/13/2017-01-13/" itemprop="url">
+                  TesseractOCR识别图像中的文字
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-13T13:10:35+08:00">
+                2017-01-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/13/2017-01-13/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/13/2017-01-13/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>图像中的文字识别技术已经是比较成熟的了，Tesseract的OCR引擎最先由HP实验室于1985年开始研发，至1995年时已经成为OCR业内最准确的三款识别引擎之一。然而，HP不久便决定放弃OCR业务，Tesseract也从此尘封。<br>数年以后，HP意识到，与其将Tesseract束之高阁，不如贡献给开源软件业，让其重焕新生－－2005年，Tesseract由美国内华达州信息技术研究所获得，并求诸于Google对Tesseract进行改进、消除Bug、优化工作。<br>Tesseract目前已作为开源项目发布在Google Project，<a href="https://github.com/gali8/Tesseract-OCR-iOS" target="_blank" rel="external">其项目主页在这里查看</a>。<br>  TesseractOCR从3.0开始就已经开始支持中文识别了，下载中文的语言包就行了。</p>
+<p>TesseractOCR可以到Github上面去下载，也可以通过Pod添加到工程。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pod &apos;TesseractOCRiOS&apos;, &apos;~&gt; 4.0.0&apos;</div></pre></td></tr></table></figure></p>
+<p>导入之后，还需要把资源文件放入项目中去，需要注意的是，资源文件导入并不是直接拖到工程目就行了，这里Added folders项中，要选择Create folder references，TesseractOCR识别时需要加载资源文件，会到项目目录下去寻找tessdata目录，并在此目录下寻找语言文件。<br><img src="/uploads/0113/QQ20170113-0.png"></p>
+<p>导入TesseractOCR头文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#import &lt;TesseractOCR/TesseractOCR.h&gt;</div></pre></td></tr></table></figure></p>
+<p>声明一个NSOperationQueue,用于存放识别队列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/** 队列 **/</div><div class="line">@property(nonatomic,strong)NSOperationQueue *operationQueue;</div><div class="line"></div><div class="line"></div><div class="line">// 初始化</div><div class="line">self.operationQueue = [[NSOperationQueue alloc] init];</div></pre></td></tr></table></figure></p>
+<p>图片识别代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">- (void)readImages&#123;</div><div class="line">    NSLog(@&quot;start&quot;);</div><div class="line">    // 此处的eng就是识别的语言文件，放到项目下tessdata中。</div><div class="line">    G8RecognitionOperation *read = [[G8RecognitionOperation alloc]initWithLanguage:@&quot;eng&quot;];</div><div class="line">    // 设置代理</div><div class="line">    read.delegate = self;</div><div class="line">    read.tesseract.engineMode = G8OCREngineModeTesseractOnly;</div><div class="line">    read.tesseract.pageSegmentationMode = G8PageSegmentationModeAutoOnly;</div><div class="line">    UIImage *image1 = [UIImage imageNamed:@&quot;1&quot;];</div><div class="line">    read.tesseract.image = image1;</div><div class="line">    __weak typeof(self) weakSelf = self;</div><div class="line">    // 代码块中就是识别完成回调</div><div class="line">    read.recognitionCompleteBlock = ^(G8Tesseract* tesseract)&#123;</div><div class="line">        weakSelf.textView.text = tesseract.recognizedText;</div><div class="line">        NSLog(@&quot;text:%@&quot;,tesseract.recognizedText);</div><div class="line">    &#125;;</div><div class="line">    // 添加到识别队列</div><div class="line">    [self.operationQueue addOperation:read];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><img src="/uploads/0113/屏幕快照 2017-01-13 下午1.44.32.png"></p>
+<p>文字的识别是一个耗时操作，可以实现G8TesseractDelegate协议里面的progressImageRecognitionForTesseract方法，可以得到识别的进度，进行UI的一些操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void)progressImageRecognitionForTesseract:(G8Tesseract *)tesseract&#123;</div><div class="line">    NSLog(@&quot;progress: %lu&quot;, (unsigned long)tesseract.progress);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>取消识别的方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (BOOL)shouldCancelImageRecognitionForTesseract:(G8Tesseract *)tesseract &#123;</div><div class="line">    // NO为不取消</div><div class="line">    return NO;  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>运行效果<br><img src="/uploads/0113/4aXBSXu1QC.gif"></p>
+<p>测试项目地址：<a href=""></a></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -281,7 +420,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-05T15:57:48+08:00">
                 2017-01-05
@@ -334,7 +473,7 @@
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/01/05/sqlite/#more" rel="contents">
-              阅读全文 &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -414,7 +553,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-29T18:50:09+08:00">
                 2016-12-29
@@ -467,7 +606,7 @@
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/12/29/WebView/#more" rel="contents">
-              阅读全文 &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -547,7 +686,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-22T20:04:27+08:00">
                 2016-12-22
@@ -600,7 +739,7 @@
           <!--noindex-->
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/12/22/JSPach/#more" rel="contents">
-              阅读全文 &raquo;
+              Read more &raquo;
             </a>
           </div>
           <!--/noindex-->
@@ -674,8 +813,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">日志</span>
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -727,11 +866,11 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主题 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
