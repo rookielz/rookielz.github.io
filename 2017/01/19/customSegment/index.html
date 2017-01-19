@@ -1,0 +1,626 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="很多时候，系统提供的空间不能满足需求时，就要根据自己的需求，去自定义控件。iOS中系统提供的segment控件的样式比较死板，用起来不好看，于是乎，就想自己自定义一个。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自定义一个炫酷SegmentedControl">
+<meta property="og:url" content="http://rookiez.cn/2017/01/19/customSegment/index.html">
+<meta property="og:site_name" content="Rookiez">
+<meta property="og:description" content="很多时候，系统提供的空间不能满足需求时，就要根据自己的需求，去自定义控件。iOS中系统提供的segment控件的样式比较死板，用起来不好看，于是乎，就想自己自定义一个。">
+<meta property="og:image" content="http://rookiez.cn/uploads/kgBdrzcDoy.gif">
+<meta property="og:updated_time" content="2017-01-19T13:13:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自定义一个炫酷SegmentedControl">
+<meta name="twitter:description" content="很多时候，系统提供的空间不能满足需求时，就要根据自己的需求，去自定义控件。iOS中系统提供的segment控件的样式比较死板，用起来不好看，于是乎，就想自己自定义一个。">
+<meta name="twitter:image" content="http://rookiez.cn/uploads/kgBdrzcDoy.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://rookiez.cn/2017/01/19/customSegment/"/>
+
+
+
+
+
+  <title> 自定义一个炫酷SegmentedControl | Rookiez </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Rookiez</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">the stack of it nerds</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://rookiez.cn/2017/01/19/customSegment/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="Rookiez">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/head.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="Rookiez">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="Rookiez" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                自定义一个炫酷SegmentedControl
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-19T19:26:44+08:00">
+                2017-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/01/19/customSegment/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/19/customSegment/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <pre><code>很多时候，系统提供的空间不能满足需求时，就要根据自己的需求，去自定义控件。iOS中系统提供的segment控件的样式比较死板，用起来不好看，于是乎，就想自己自定义一个。
+</code></pre><a id="more"></a>
+<pre><code>直接看代码，这是头文件里面的属性和方法
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">/** 控件高度，默认40 **/</div><div class="line">@property(nonatomic,assign)CGFloat height;</div><div class="line"></div><div class="line">/** 选中文字颜色,默认黑色 **/</div><div class="line">@property(nonatomic,strong)UIColor *selectTitleColor;</div><div class="line"></div><div class="line">/** 未选中文字颜色，默认白色 **/</div><div class="line">@property(nonatomic,strong)UIColor *titleColor;</div><div class="line"></div><div class="line">/** 选中item背景颜色，默认白色 **/</div><div class="line">@property(nonatomic,strong)UIColor *selectItemBgColor;</div><div class="line"></div><div class="line">/** 未选中item背景颜色，默认灰色，透明0.2 **/</div><div class="line">@property(nonatomic,strong)UIColor *itemBgColor;</div><div class="line"></div><div class="line">/** 控件圆角 **/</div><div class="line">@property(nonatomic,assign)CGFloat cornerRadius;</div><div class="line"></div><div class="line">/** 选中项，默认0 **/</div><div class="line">@property(nonatomic,assign)NSInteger selectIndex;</div><div class="line"></div><div class="line">/** 边框颜色，默认与选中颜色一致 **/</div><div class="line">@property(nonatomic,strong)UIColor *borderColor;</div><div class="line"></div><div class="line"></div><div class="line">// 初始化</div><div class="line">- (instancetype)initWithItems:(NSArray*)items;</div></pre></td></tr></table></figure>
+<p>初始化UI属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 初始化UI</div><div class="line">- (void)setUpUI&#123;</div><div class="line">    self.layer.borderColor = self.borderColor.CGColor;</div><div class="line">    self.layer.borderWidth = 1;</div><div class="line">    self.backgroundColor = self.itemBgColor;</div><div class="line">    self.layer.cornerRadius = self.cornerRadius;</div><div class="line">    self.frame = CGRectMake(0, 0, ([self getItemMaxWidth] + 20)*self.items.count, 40);</div><div class="line">    [self selectItemWithIndex:self.selectIndex];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>创建Item<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">/** 创建item **/</div><div class="line">- (void)makeItems&#123;</div><div class="line">    WEAKSELF;</div><div class="line">    [self.itemArray removeAllObjects];</div><div class="line">    CGFloat maxWidth = [self getItemMaxWidth] + 20;</div><div class="line">    // 遍历item</div><div class="line">    [self.items enumerateObjectsUsingBlock:^(NSString * _Nonnull str, NSUInteger idx, BOOL * _Nonnull stop) &#123;</div><div class="line">        // 创建item</div><div class="line">        UIButton *itemBtn = [[UIButton alloc]initWithFrame:CGRectMake(maxWidth * idx, 0, maxWidth, weakSelf.height)];</div><div class="line">        [itemBtn setTitle:str forState:UIControlStateNormal];</div><div class="line">        [itemBtn setTitleColor:weakSelf.selectTitleColor    forState:UIControlStateSelected];</div><div class="line">        [itemBtn setTitleColor:weakSelf.titleColor forState:UIControlStateNormal];</div><div class="line">        itemBtn.layer.cornerRadius = weakSelf.cornerRadius;</div><div class="line">        itemBtn.layer.masksToBounds = YES;</div><div class="line">        itemBtn.tag = idx;</div><div class="line">        [itemBtn addTarget:weakSelf action:@selector(selectItemClick:) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">        [weakSelf.itemArray addObject:itemBtn];</div><div class="line">        [weakSelf addSubview:itemBtn];</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>选中item，改变状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 选中item</div><div class="line">- (void)selectItemWithIndex:(NSInteger)index&#123;</div><div class="line">    [self.itemArray enumerateObjectsUsingBlock:^(UIButton * _Nonnull btn, NSUInteger idx, BOOL * _Nonnull stop) &#123;</div><div class="line">        if (idx == index) &#123;</div><div class="line">            btn.selected = YES;</div><div class="line">        &#125;else&#123;</div><div class="line">            btn.selected = NO;</div><div class="line">        &#125;</div><div class="line">    &#125;];</div><div class="line">    [self animViewMoveTo:index];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>根据点击item，移动背景<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 动画移动</div><div class="line">- (void)animViewMoveTo:(NSInteger)index&#123;</div><div class="line">    WEAKSELF;</div><div class="line">    [UIView animateWithDuration:0.2 animations:^&#123;</div><div class="line">        UIButton *btn = weakSelf.itemArray[index];</div><div class="line">        weakSelf.animView.center = btn.center;</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>头文件里面的属性都有默认值，所以不设置也可以，但是想要自己手动设置，让这些属性起作用，就要重写他们的setter方法，在setter方法中进行重新设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">#pragma mark - setter</div><div class="line"></div><div class="line">- (void)setHeight:(CGFloat)height</div><div class="line">&#123;</div><div class="line">    _height = height;</div><div class="line">    [self setUpUI];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setTitleColor:(UIColor *)titleColor</div><div class="line">&#123;</div><div class="line">    _titleColor = titleColor;</div><div class="line">    [self makeItems];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setSelectTitleColor:(UIColor *)selectTitleColor</div><div class="line">&#123;</div><div class="line">    _selectTitleColor = selectTitleColor;</div><div class="line">    [self makeItems];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setItemBgColor:(UIColor *)itemBgColor</div><div class="line">&#123;</div><div class="line">    _itemBgColor = itemBgColor;</div><div class="line">    [self setUpUI];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setSelectIndex:(NSInteger)selectIndex</div><div class="line">&#123;</div><div class="line">    _selectIndex = selectIndex;</div><div class="line">    [self selectItemWithIndex:selectIndex];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setSelectItemBgColor:(UIColor *)selectItemBgColor</div><div class="line">&#123;</div><div class="line">    _selectItemBgColor = selectItemBgColor;</div><div class="line">    self.animView.backgroundColor = selectItemBgColor;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setBorderColor:(UIColor *)borderColor</div><div class="line">&#123;</div><div class="line">    _borderColor = borderColor;</div><div class="line">    [self setUpUI];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setCornerRadius:(CGFloat)cornerRadius</div><div class="line">&#123;</div><div class="line">    _cornerRadius = cornerRadius;</div><div class="line">    [self.animView removeFromSuperview];</div><div class="line">    _animView = nil;</div><div class="line">    [self setUpUI];</div><div class="line">    [self makeItems];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>看看效果吧<br><img src="/uploads/kgBdrzcDoy.gif"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/13/2017-01-13/" rel="next" title="TesseractOCR识别图像中的文字">
+                <i class="fa fa-chevron-left"></i> TesseractOCR识别图像中的文字
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/19/customSegment/"
+           data-title="自定义一个炫酷SegmentedControl" data-url="http://rookiez.cn/2017/01/19/customSegment/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/head.jpg"
+               alt="Rookiez" />
+          <p class="site-author-name" itemprop="name">Rookiez</p>
+          <p class="site-description motion-element" itemprop="description">start from zero</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">posts</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Rookiez</span>
+</div>
+
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"rookielz"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
