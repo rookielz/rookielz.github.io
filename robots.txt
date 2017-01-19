@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1504">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 16.0px; font: 14.0px Courier; color: #444444; -webkit-text-stroke: #444444; background-color: #808080; background-color: rgba(128, 128, 128, 0.047)}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 16.0px; font: 14.0px Courier; color: #333333; -webkit-text-stroke: #333333; background-color: #808080; background-color: rgba(128, 128, 128, 0.047)}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; line-height: 16.0px; font: 14.0px Courier; color: #333333; -webkit-text-stroke: #333333; background-color: #808080; background-color: rgba(128, 128, 128, 0.047); min-height: 17.0px}
+    span.s1 {font-kerning: none}
+    span.s2 {font-kerning: none; color: #444444; -webkit-text-stroke: 0px #444444}
+  </style>
+</head>
+<body>
+<p class="p1"><span class="s1"># hexo robots.txt</span></p>
+<p class="p2"><span class="s1">User-agent: * Allow: /</span></p>
+<p class="p2"><span class="s1">Allow: /archives/</span></p>
+<p class="p2"><span class="s1">Disallow: /vendors/</span></p>
+<p class="p2"><span class="s1">Disallow: /js/</span></p>
+<p class="p2"><span class="s1">Disallow: /css/</span></p>
+<p class="p2"><span class="s1">Disallow: /fonts/</span></p>
+<p class="p2"><span class="s1">Disallow: /vendors/</span></p>
+<p class="p2"><span class="s1">Disallow: /fancybox/</span></p>
+<p class="p3"><span class="s1"></span><br></p>
+<p class="p2"><span class="s1">Sitemap: http://lancelot_lewis</span><span class="s2">.coding.me</span><span class="s1">/sitemap</span><span class="s2">.xml</span></p>
+<p class="p2"><span class="s1">Sitemap: http://lancelot_lewis</span><span class="s2">.coding.me</span><span class="s1">/baidusitemap</span><span class="s2">.xml</span></p>
+</body>
+</html>
