@@ -84,17 +84,20 @@
 
 
 
-<meta name="description" content="很多时候，系统提供的空间不能满足需求时，就要根据自己的需求，去自定义控件。iOS中系统提供的segment控件的样式比较死板，用起来不好看，于是乎，就想自己自定义一个。">
+<meta name="description" content="很多时候，系统提供的空间不能满足需求时，就要根据自己的需求，去自定义控件。iOS中系统提供
+的segment控件的样式比较死板，用起来不好看，于是乎，就想自己自定义一个。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="自定义一个炫酷SegmentedControl">
 <meta property="og:url" content="http://rookiez.cn/2017/01/19/customSegment/index.html">
 <meta property="og:site_name" content="Rookiez">
-<meta property="og:description" content="很多时候，系统提供的空间不能满足需求时，就要根据自己的需求，去自定义控件。iOS中系统提供的segment控件的样式比较死板，用起来不好看，于是乎，就想自己自定义一个。">
+<meta property="og:description" content="很多时候，系统提供的空间不能满足需求时，就要根据自己的需求，去自定义控件。iOS中系统提供
+的segment控件的样式比较死板，用起来不好看，于是乎，就想自己自定义一个。">
 <meta property="og:image" content="http://rookiez.cn/uploads/kgBdrzcDoy.gif">
-<meta property="og:updated_time" content="2017-01-19T13:13:53.000Z">
+<meta property="og:updated_time" content="2017-01-20T00:58:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自定义一个炫酷SegmentedControl">
-<meta name="twitter:description" content="很多时候，系统提供的空间不能满足需求时，就要根据自己的需求，去自定义控件。iOS中系统提供的segment控件的样式比较死板，用起来不好看，于是乎，就想自己自定义一个。">
+<meta name="twitter:description" content="很多时候，系统提供的空间不能满足需求时，就要根据自己的需求，去自定义控件。iOS中系统提供
+的segment控件的样式比较死板，用起来不好看，于是乎，就想自己自定义一个。">
 <meta name="twitter:image" content="http://rookiez.cn/uploads/kgBdrzcDoy.gif">
 
 
@@ -109,7 +112,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: 'Author'
+      author: '博主'
     },
     algolia: {
       applicationID: '',
@@ -189,7 +192,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Home
+            首页
           </a>
         </li>
       
@@ -199,7 +202,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archives
+            归档
           </a>
         </li>
       
@@ -209,7 +212,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            Tags
+            标签
           </a>
         </li>
       
@@ -279,7 +282,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-19T19:26:44+08:00">
                 2017-01-19
@@ -327,8 +330,8 @@
       
 
       
-        <pre><code>很多时候，系统提供的空间不能满足需求时，就要根据自己的需求，去自定义控件。iOS中系统提供的segment控件的样式比较死板，用起来不好看，于是乎，就想自己自定义一个。
-</code></pre><a id="more"></a>
+        <pre><code>很多时候，系统提供的空间不能满足需求时，就要根据自己的需求，去自定义控件。iOS中系统提供
+</code></pre><p>的segment控件的样式比较死板，用起来不好看，于是乎，就想自己自定义一个。<br><a id="more"></a></p>
 <pre><code>直接看代码，这是头文件里面的属性和方法
 </code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">/** 控件高度，默认40 **/</div><div class="line">@property(nonatomic,assign)CGFloat height;</div><div class="line"></div><div class="line">/** 选中文字颜色,默认黑色 **/</div><div class="line">@property(nonatomic,strong)UIColor *selectTitleColor;</div><div class="line"></div><div class="line">/** 未选中文字颜色，默认白色 **/</div><div class="line">@property(nonatomic,strong)UIColor *titleColor;</div><div class="line"></div><div class="line">/** 选中item背景颜色，默认白色 **/</div><div class="line">@property(nonatomic,strong)UIColor *selectItemBgColor;</div><div class="line"></div><div class="line">/** 未选中item背景颜色，默认灰色，透明0.2 **/</div><div class="line">@property(nonatomic,strong)UIColor *itemBgColor;</div><div class="line"></div><div class="line">/** 控件圆角 **/</div><div class="line">@property(nonatomic,assign)CGFloat cornerRadius;</div><div class="line"></div><div class="line">/** 选中项，默认0 **/</div><div class="line">@property(nonatomic,assign)NSInteger selectIndex;</div><div class="line"></div><div class="line">/** 边框颜色，默认与选中颜色一致 **/</div><div class="line">@property(nonatomic,strong)UIColor *borderColor;</div><div class="line"></div><div class="line"></div><div class="line">// 初始化</div><div class="line">- (instancetype)initWithItems:(NSArray*)items;</div></pre></td></tr></table></figure>
 <p>初始化UI属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// 初始化UI</div><div class="line">- (void)setUpUI&#123;</div><div class="line">    self.layer.borderColor = self.borderColor.CGColor;</div><div class="line">    self.layer.borderWidth = 1;</div><div class="line">    self.backgroundColor = self.itemBgColor;</div><div class="line">    self.layer.cornerRadius = self.cornerRadius;</div><div class="line">    self.frame = CGRectMake(0, 0, ([self getItemMaxWidth] + 20)*self.items.count, 40);</div><div class="line">    [self selectItemWithIndex:self.selectIndex];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -337,6 +340,7 @@
 <p>根据点击item，移动背景<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 动画移动</div><div class="line">- (void)animViewMoveTo:(NSInteger)index&#123;</div><div class="line">    WEAKSELF;</div><div class="line">    [UIView animateWithDuration:0.2 animations:^&#123;</div><div class="line">        UIButton *btn = weakSelf.itemArray[index];</div><div class="line">        weakSelf.animView.center = btn.center;</div><div class="line">    &#125;];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>头文件里面的属性都有默认值，所以不设置也可以，但是想要自己手动设置，让这些属性起作用，就要重写他们的setter方法，在setter方法中进行重新设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">#pragma mark - setter</div><div class="line"></div><div class="line">- (void)setHeight:(CGFloat)height</div><div class="line">&#123;</div><div class="line">    _height = height;</div><div class="line">    [self setUpUI];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setTitleColor:(UIColor *)titleColor</div><div class="line">&#123;</div><div class="line">    _titleColor = titleColor;</div><div class="line">    [self makeItems];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setSelectTitleColor:(UIColor *)selectTitleColor</div><div class="line">&#123;</div><div class="line">    _selectTitleColor = selectTitleColor;</div><div class="line">    [self makeItems];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setItemBgColor:(UIColor *)itemBgColor</div><div class="line">&#123;</div><div class="line">    _itemBgColor = itemBgColor;</div><div class="line">    [self setUpUI];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setSelectIndex:(NSInteger)selectIndex</div><div class="line">&#123;</div><div class="line">    _selectIndex = selectIndex;</div><div class="line">    [self selectItemWithIndex:selectIndex];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setSelectItemBgColor:(UIColor *)selectItemBgColor</div><div class="line">&#123;</div><div class="line">    _selectItemBgColor = selectItemBgColor;</div><div class="line">    self.animView.backgroundColor = selectItemBgColor;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setBorderColor:(UIColor *)borderColor</div><div class="line">&#123;</div><div class="line">    _borderColor = borderColor;</div><div class="line">    [self setUpUI];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setCornerRadius:(CGFloat)cornerRadius</div><div class="line">&#123;</div><div class="line">    _cornerRadius = cornerRadius;</div><div class="line">    [self.animView removeFromSuperview];</div><div class="line">    _animView = nil;</div><div class="line">    [self setUpUI];</div><div class="line">    [self makeItems];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>看看效果吧<br><img src="/uploads/kgBdrzcDoy.gif"></p>
+<p>Demo下载：<a href="https://github.com/rookielz/CustomSegment" target="_blank" rel="external">https://github.com/rookielz/CustomSegment</a></p>
 
       
     </div>
@@ -437,7 +441,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">5</span>
-                <span class="site-state-item-name">posts</span>
+                <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
@@ -489,11 +493,11 @@
 
 
 <div class="powered-by">
-  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
 
 <div class="theme-info">
-  Theme -
+  主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Muse
   </a>
